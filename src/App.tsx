@@ -132,6 +132,7 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
               id="name"
+              classNames={{label:'autour-one'}}
               label="Name of the collection *"
               placeholder="Enter a name"
               radius="md"
@@ -171,7 +172,7 @@ function App() {
               classNames={{label: 'width-100'}}
               disabled
               label={(
-                <LabelTooltip label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
+                <LabelTooltip classNames={{label:'autour-one'}} label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
                   <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
                 </LabelTooltip>
               )}
