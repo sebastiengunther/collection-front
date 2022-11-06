@@ -35,8 +35,8 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <Select
               id="blockchain"
-              defaultValue=""
               data={toSelectData(blockchainData)}
+              defaultValue=""
               label="Save my data on *"
               size="md"
             /> {/* Todo : Add component for tooltip on label */}
@@ -44,8 +44,8 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <Select
               id="protocol"
-              defaultValue=""
               data={toSelectData(protocolData)}
+              defaultValue=""
               label="Save my data on *"
               size="md"
             /> {/* Todo : Add component for tooltip on label */}
