@@ -8,8 +8,21 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <MantineProvider 
       theme={{ 
         globalStyles: () => ({
+          // Utils
           '#app .width-100': {
             width: '100%'
+          },
+          // Anchor
+          '#app .anchor': {
+            borderBottom: '2px solid',
+            borderBottomColor: '#ddd',
+            color: '#111',
+            fontWeight: 500,
+            textDecoration: 'none',
+            '&:hover': {
+              borderBottomColor: '#eee',
+              textDecoration: 'none'
+            }
           }
         })
       }}
