@@ -104,7 +104,9 @@ function App() {
               placeholder="Enter an amount"
               radius="md"
               size="md"
-            > Max : 10 000 </InputGroup>
+            >
+              Max : 10 000
+            </InputGroup>
           </Grid.Col>
         </Grid>
 
