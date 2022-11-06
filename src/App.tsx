@@ -114,8 +114,8 @@ function App() {
               value=""
             /> {/* Todo : Add dotted value */}
           </Grid.Col>
-          <Grid.Col md={2} sm={3} xs={6}>
-            <Anchor href="#"> More options </Anchor> {/* Todo : Add style */}
+          <Grid.Col md={2} sm={3} xs={6} mb="xs" mt="auto">
+            <Anchor className="anchor" href="#"> More options </Anchor>
           </Grid.Col>
         </Grid>
 
