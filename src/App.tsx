@@ -41,9 +41,14 @@ function App() {
   useCallback(getMetamaskAddress, [address]);
   useEffect(getMetamaskAddress, []);
 
+  const sendForm = (values: unknown) => {
+    form.reset();
+    // Todo : Send to back
+  };
+
   return (
     <Container id="app" px="lg" size="lg">
-      <form>
+      <form onSubmit={form.onSubmit(sendForm)}>
         <Title order={1}> Complete informations </Title>
 
         <Grid columns={3} gutter="xl" mt="1px">
@@ -112,7 +117,7 @@ function App() {
               placeholder="Enter a name"
               radius="md"
               size="md"
-              {...form.getInputProps('symbol')}
+              {...form.getInputProps('name')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
@@ -122,7 +127,7 @@ function App() {
               placeholder="Enter a name"
               radius="md"
               size="md"
-              {...form.getInputProps('name')}
+              {...form.getInputProps('symbol')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
@@ -185,7 +190,7 @@ function App() {
 
         <Grid columns={1} gutter="xl" mt="lg">
           <Grid.Col span={1}>
-            Continue {/* Todo : Add button */}
+            <Button size="md" className="button-tall button-black" type="submit"> Continue </Button>
           </Grid.Col>
         </Grid>
       </form>
