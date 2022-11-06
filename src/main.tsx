@@ -10,7 +10,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <MantineProvider 
       theme={{ 
         globalStyles: () => ({
+          // Main for app
+          '#app *': {
+            fontFamily: 'Roboto,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji'
+          },
           // Utils
+          '#app .autour-one': {
+            fontFamily: 'Autour-One'
+          },
           '#app .width-100': {
             width: '100%'
           },
