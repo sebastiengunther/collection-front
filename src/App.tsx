@@ -1,4 +1,13 @@
-import { Anchor, Container, Grid, Text, Title } from '@mantine/core';
+import { Anchor, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
+
+const blockchainData = new Array<string>('ETH', 'Polygon');
+const protocolData = new Array<string>('IPFS', 'Arweave');
+
+const toSelectData = (data: Array<string>) => {
+  const res = data.map((value) => ({ value: value, label: value, disabled: false }));
+  res.unshift({ value: '', label: '--Select--', disabled: true });
+  return res;
+};
 
 function App() {
   return (
@@ -17,49 +26,87 @@ function App() {
 
         <Grid columns={6} gutter="xl" mt="xl">
           <Grid.Col md={2} sm={3} xs={6}>
-            Upload
+            Upload {/* Todo : Add component for dropzone and button */}
+          </Grid.Col>
+        </Grid>
+        
+        <Grid columns={6} gutter="xl" mt="sm">
+          <Grid.Col md={2} sm={3} xs={6}>
+            <Select
+              id="blockchain"
+              defaultValue=""
+              data={toSelectData(blockchainData)}
+              label="Save my data on *"
+              size="md"
+            /> {/* Todo : Add component for tooltip on label */}
+          </Grid.Col>
+          <Grid.Col md={2} sm={3} xs={6}>
+            <Select
+              id="protocol"
+              defaultValue=""
+              data={toSelectData(protocolData)}
+              label="Save my data on *"
+              size="md"
+            /> {/* Todo : Add component for tooltip on label */}
           </Grid.Col>
         </Grid>
 
         <Grid columns={6} gutter="xl" mt="sm">
           <Grid.Col md={2} sm={3} xs={6}>
-            Blockchain
+            <TextInput
+              id="name"
+              label="Name of the collection *"
+              placeholder="Enter a name"
+              radius="md"
+              size="md"
+            />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
-            Protocol
+            <TextInput
+              id="symbol"
+              label="Symbol of the collection *"
+              placeholder="Enter a name"
+              radius="md"
+              size="md"
+            />
+          </Grid.Col>
+          <Grid.Col md={2} sm={3} xs={6}>
+            Amount {/* Todo : Make a component like bootstrap InputGroup */}
           </Grid.Col>
         </Grid>
 
         <Grid columns={6} gutter="xl" mt="sm">
           <Grid.Col md={2} sm={3} xs={6}>
-            Name
+            <TextInput
+              disabled
+              label="Owner *"
+              radius="md"
+              size="md"
+              variant="filled"
+              value=""
+            /> {/* Todo : Add dotted value */} {/* Todo : Add component for tooltip on label */}
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
-            Symbol
-          </Grid.Col>
-          <Grid.Col md={2} sm={3} xs={6}>
-            Amount
-          </Grid.Col>
-        </Grid>
-
-        <Grid columns={6} gutter="xl" mt="sm">
-          <Grid.Col md={2} sm={3} xs={6}>
-            Owner
-          </Grid.Col>
-          <Grid.Col md={2} sm={3} xs={6}>
-            <Anchor href="#"> More options </Anchor>
+            <Anchor href="#"> More options </Anchor> {/* Todo : Add style */}
           </Grid.Col>
         </Grid>
 
         <Grid columns={3} gutter="xl" mt="sm">
           <Grid.Col md={2} sm={3}>
-            Description
+            <Textarea
+              id="description"
+              label="Description *"
+              minRows={4}
+              placeholder="Enter a description"
+              radius="md"
+              size="md"
+            />
           </Grid.Col>
         </Grid>
 
         <Grid columns={1} gutter="xl" mt="lg">
           <Grid.Col span={1}>
-            Continue
+            Continue {/* Todo : Add button */}
           </Grid.Col>
         </Grid>
       </form>
