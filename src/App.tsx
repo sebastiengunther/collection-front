@@ -5,6 +5,7 @@ import Const from './Const';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import DropzoneInput from './components/DropzoneInput';
 import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { useCallback, useEffect, useState } from 'react';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -15,7 +16,28 @@ const toSelectData = (data: Array<string>) => {
   return res;
 };
 
+const dotAddress = (address: string) => {
+  const ratio = address.length / Const.ADDRESS_LENGTH;
+  const begin = ratio * Const.ADDRESS_BEGIN_DOT;
+  const end = ratio * Const.ADDRESS_END_DOT;
+  return `${address.substring(0, begin).replace('x', '×')}...${address.substring(end)}`;
+};
+
 function App() {
+  const [address, setAddress] = useState('');
+
+  const getMetamaskAddress = () => {
+    if(window.ethereum) {
+      window.ethereum.request({method: Const.ETH_REQUEST_ACCOUNT})
+        .then(([account]: [string]) => {
+          setAddress(account);
+      }).catch(console.error);
+    }
+  };
+
+  useCallback(getMetamaskAddress, [address]);
+  useEffect(getMetamaskAddress, []);
+
   return (
     <Container id="app" px="lg" size="lg">
       <form>
@@ -124,8 +146,8 @@ function App() {
               radius="md"
               size="md"
               variant="filled"
-              value=""
-            /> {/* Todo : Add dotted value */}
+              value={dotAddress(address)}
+            />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6} mb="xs" mt="auto">
             <Anchor className="anchor" href="#"> More options </Anchor>
