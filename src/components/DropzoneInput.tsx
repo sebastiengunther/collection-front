@@ -1,5 +1,5 @@
 import { Button, DefaultProps, FileButton, Grid, Input, MantineSize, Selectors } from "@mantine/core";
-import { memo, ReactNode, useState } from "react";
+import { ChangeEvent, memo, ReactNode, useCallback, useEffect, useState } from "react";
 import useStyles from './DropzoneInput.styles';
 import { Dropzone, DropzoneProps, FileWithPath } from '@mantine/dropzone';
 import { AiOutlineClose, AiOutlineCloudUpload, AiOutlineUpload } from 'react-icons/ai';
@@ -12,6 +12,7 @@ interface DropzoneInputProps extends
   DefaultProps<DropzoneInputStylesNames>
 {
   label: ReactNode;
+  value: string;
   gutter?: MantineSize;
   mt?: MantineSize;
   iconSize?: string | number;
@@ -19,6 +20,7 @@ interface DropzoneInputProps extends
   required?: boolean;
   size?: MantineSize;
   error?: string;
+  onChange: (value: null | undefined | unknown | ChangeEvent<any>) => void;
   onDrop?: (files: Array<FileWithPath>) => void;
   onReject?: (files: Array<FileRejection>) => void;
   onLoadFile?: (file: File) => void;
@@ -48,6 +50,8 @@ function DropzoneInput({
   // image
   // dropzone
   children,
+  value,
+  onChange,
   onDrop,
   onReject,
   onLoadFile,
@@ -66,6 +70,13 @@ function DropzoneInput({
   const { classes, cx } = useStyles(undefined as void, { name: 'DropzoneInput', classNames, styles, unstyled });
   
   const [source, setSource] = useState('');
+
+  const setSourceByValue = () => {
+    setSource(value);
+  }
+
+  useCallback(setSourceByValue, [source]);
+  useEffect(setSourceByValue, [value]);
 
   const setFile = (payload: File | null): void => {
     if(payload) {
@@ -100,6 +111,10 @@ function DropzoneInput({
       
       if(onLoadFile) {
         onLoadFile(file);
+      }
+      
+      if(onChange) {
+        onChange(reader.result);
       }
     });
   }
