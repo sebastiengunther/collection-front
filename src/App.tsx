@@ -70,7 +70,7 @@ function App() {
       <form onSubmit={form.onSubmit(sendForm)}>
         <Title order={1}> Complete informations </Title>
 
-        <Grid columns={3} gutter="xl" mt="1px">
+        <Grid columns={3} gutter="xl" mt={0} mb="md">
           <Grid.Col md={2} sm={3}>
             <Text className="text-steel">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
