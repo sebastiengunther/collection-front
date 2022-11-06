@@ -148,6 +148,12 @@ function App() {
               variant="filled"
               value={dotAddress(address)}
             />
+            <TextInput
+              id="owner"
+              radius="md"
+              size="md"
+              type="hidden"
+            />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6} mb="xs" mt="auto">
             <Anchor className="anchor" href="#"> More options </Anchor>
