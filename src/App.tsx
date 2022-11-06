@@ -38,6 +38,7 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <Select
               id="blockchain"
+              classNames={{label: 'width-100'}}
               data={toSelectData(blockchainData)}
               defaultValue=""
               label={(
@@ -51,6 +52,7 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <Select
               id="protocol"
+              classNames={{label: 'width-100'}}
               data={toSelectData(protocolData)}
               defaultValue=""
               label={(
@@ -99,6 +101,7 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
               id="owner"
+              classNames={{label: 'width-100'}}
               disabled
               label={(
                 <LabelTooltip label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
