@@ -42,10 +42,29 @@ function App() {
   useEffect(getMetamaskAddress, []);
 
   const sendForm = (values: unknown) => {
+    window.localStorage.removeItem('form');
     form.reset();
     // Todo : Send to back
   };
 
+  useEffect(() => {
+    const storedValue = window.localStorage.getItem('form');
+    if(storedValue) {
+      try {
+        const parsedValue = JSON.parse(storedValue);
+        Object.entries(parsedValue).filter(([_prop, value]) => value).forEach((args) => {
+          form.setFieldValue(...args);
+        });
+      } catch(e) {
+        console.warn(e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('form', JSON.stringify(form.values));
+  }, [form.values]);
+  
   return (
     <Container id="app" px="lg" size="lg">
       <form onSubmit={form.onSubmit(sendForm)}>
