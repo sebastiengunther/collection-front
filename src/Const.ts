@@ -1,5 +1,6 @@
 export default class {
   public static readonly ADDRESS_BEGIN_DOT = 22;
+  public static readonly ADDRESS_END_DOT = 34;
   public static readonly AMOUNT_MIN = 1;
   public static readonly AMOUNT_MAX = 10_000;
   public static readonly ETH_REQUEST_ACCOUNT = 'eth_requestAccounts';
