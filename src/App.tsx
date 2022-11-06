@@ -98,6 +98,7 @@ function App() {
         <Grid columns={6} gutter="xl" mt="sm">
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
+              id="owner"
               disabled
               label={(
                 <LabelTooltip label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
