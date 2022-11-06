@@ -1,6 +1,8 @@
 import { Anchor, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
 import InputGroup from './components/InputGroup';
+import LabelTooltip from './components/LabelTooltip';
 import Const from './Const';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -38,18 +40,26 @@ function App() {
               id="blockchain"
               data={toSelectData(blockchainData)}
               defaultValue=""
-              label="Save my data on *"
+              label={(
+                <LabelTooltip label="Blockchain *" tooltip="Lorem ipsum" size="md" withArrow>
+                  <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
+                </LabelTooltip>
+              )}
               size="md"
-            /> {/* Todo : Add component for tooltip on label */}
+            />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
             <Select
               id="protocol"
               data={toSelectData(protocolData)}
               defaultValue=""
-              label="Save my data on *"
+              label={(
+                <LabelTooltip label="Save my data on *" tooltip="Lorem ipsum" size="md" withArrow>
+                  <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
+                </LabelTooltip>
+              )}
               size="md"
-            /> {/* Todo : Add component for tooltip on label */}
+            />
           </Grid.Col>
         </Grid>
 
@@ -89,12 +99,16 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
               disabled
-              label="Owner *"
+              label={(
+                <LabelTooltip label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
+                  <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
+                </LabelTooltip>
+              )}
               radius="md"
               size="md"
               variant="filled"
               value=""
-            /> {/* Todo : Add dotted value */} {/* Todo : Add component for tooltip on label */}
+            /> {/* Todo : Add dotted value */}
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
             <Anchor href="#"> More options </Anchor> {/* Todo : Add style */}
