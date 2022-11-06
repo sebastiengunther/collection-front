@@ -151,7 +151,7 @@ function DropzoneInput({
             </Input.Label>
           </Grid.Col>
           <Grid.Col span={1}>
-            <FileButton onChange={setFile} accept={(new Array(accept)).join(',')}>
+            <FileButton onChange={setFile} accept={accept && (new Array(accept)).join(',')}>
               {(props) => <Button id={id} className={cx(classes.button, classNames?.button)} size={size || defaultProps.size} {...props}> {children} </Button>}
             </FileButton>
             {error && (<Input.Error className={cx(classes.error, classNames?.error)} size={size || defaultProps.size} mt="5px"> {error} </Input.Error>)}
