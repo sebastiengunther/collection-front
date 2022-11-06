@@ -1,4 +1,4 @@
-import { Anchor, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
+import { Anchor, Button, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
 import InputGroup from './components/InputGroup';
 import LabelTooltip from './components/LabelTooltip';
 import Const from './Const';
@@ -6,6 +6,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import DropzoneInput from './components/DropzoneInput';
 import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useCallback, useEffect, useState } from 'react';
+import useAppForm from './App.form';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -24,6 +25,7 @@ const dotAddress = (address: string) => {
 };
 
 function App() {
+  const form = useAppForm();
   const [address, setAddress] = useState('');
 
   const getMetamaskAddress = () => {
@@ -31,6 +33,7 @@ function App() {
       window.ethereum.request({method: Const.ETH_REQUEST_ACCOUNT})
         .then(([account]: [string]) => {
           setAddress(account);
+          form.setFieldValue('owner', account);
       }).catch(console.error);
     }
   };
@@ -61,6 +64,7 @@ function App() {
               maxFiles={Const.MAX_FILES}
               maxSize={Const.FILE_MAX_SIZE}
               size="md"
+              {...form.getInputProps('file')}
             >
               Upload
             </DropzoneInput>
@@ -80,6 +84,7 @@ function App() {
                 </LabelTooltip>
               )}
               size="md"
+              {...form.getInputProps('blockchain')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
@@ -94,6 +99,7 @@ function App() {
                 </LabelTooltip>
               )}
               size="md"
+              {...form.getInputProps('protocol')}
             />
           </Grid.Col>
         </Grid>
@@ -106,6 +112,7 @@ function App() {
               placeholder="Enter a name"
               radius="md"
               size="md"
+              {...form.getInputProps('symbol')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
@@ -115,6 +122,7 @@ function App() {
               placeholder="Enter a name"
               radius="md"
               size="md"
+              {...form.getInputProps('name')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
@@ -126,6 +134,7 @@ function App() {
               placeholder="Enter an amount"
               radius="md"
               size="md"
+              {...form.getInputProps('amount')}
             >
               Max : 10 000
             </InputGroup>
@@ -135,7 +144,6 @@ function App() {
         <Grid columns={6} gutter="xl" mt="sm">
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
-              id="owner"
               classNames={{label: 'width-100'}}
               disabled
               label={(
@@ -153,6 +161,7 @@ function App() {
               radius="md"
               size="md"
               type="hidden"
+              {...form.getInputProps('owner')}
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6} mb="xs" mt="auto">
@@ -169,6 +178,7 @@ function App() {
               placeholder="Enter a description"
               radius="md"
               size="md"
+              {...form.getInputProps('description')}
             />
           </Grid.Col>
         </Grid>
