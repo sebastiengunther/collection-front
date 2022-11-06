@@ -1,4 +1,5 @@
 import { Anchor, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
+import InputGroup from './components/InputGroup';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -71,7 +72,15 @@ function App() {
             />
           </Grid.Col>
           <Grid.Col md={2} sm={3} xs={6}>
-            Amount {/* Todo : Make a component like bootstrap InputGroup */}
+            <InputGroup
+              id="amount"
+              label="Amount of NFTs in the collection *"
+              max={10_000}
+              min={1}
+              placeholder="Enter an amount"
+              radius="md"
+              size="md"
+            > Max : 10 000 </InputGroup>
           </Grid.Col>
         </Grid>
 
