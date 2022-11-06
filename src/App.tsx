@@ -3,6 +3,8 @@ import InputGroup from './components/InputGroup';
 import LabelTooltip from './components/LabelTooltip';
 import Const from './Const';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import DropzoneInput from './components/DropzoneInput';
+import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -30,7 +32,16 @@ function App() {
 
         <Grid columns={6} gutter="xl" mt="xl">
           <Grid.Col md={2} sm={3} xs={6}>
-            Upload {/* Todo : Add component for dropzone and button */}
+            <DropzoneInput
+              id="file"
+              accept={IMAGE_MIME_TYPE}
+              label="Collection Picture *"
+              maxFiles={Const.MAX_FILES}
+              maxSize={Const.FILE_MAX_SIZE}
+              size="md"
+            >
+              Upload
+            </DropzoneInput>
           </Grid.Col>
         </Grid>
         
