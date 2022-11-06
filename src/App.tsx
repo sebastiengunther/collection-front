@@ -72,7 +72,7 @@ function App() {
 
         <Grid columns={3} gutter="xl" mt="1px">
           <Grid.Col md={2} sm={3}>
-            <Text>
+            <Text className="text-steel">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
             </Text>
@@ -84,7 +84,8 @@ function App() {
             <DropzoneInput
               id="file"
               accept={IMAGE_MIME_TYPE}
-              label="Collection Picture *"
+              classNames={{button: 'button-small button-white', preview: 'background-grey border-grey'}}
+              label={(<Text> Collection Picture <Text className="asterisk-6"> * </Text> </Text>)}
               maxFiles={Const.MAX_FILES}
               maxSize={Const.FILE_MAX_SIZE}
               size="md"
@@ -103,7 +104,12 @@ function App() {
               data={toSelectData(blockchainData)}
               defaultValue=""
               label={(
-                <LabelTooltip label="Blockchain *" tooltip="Lorem ipsum" size="md" withArrow>
+                <LabelTooltip 
+                  label={(<Text> Blockchain <Text className="asterisk-5"> * </Text> </Text>)}
+                  tooltip={(<Text className="text-white font-weight-normal">Lorem ipsum</Text>)}
+                  size="md"
+                  withArrow
+                >
                   <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
                 </LabelTooltip>
               )}
@@ -118,7 +124,12 @@ function App() {
               data={toSelectData(protocolData)}
               defaultValue=""
               label={(
-                <LabelTooltip label="Save my data on *" tooltip="Lorem ipsum" size="md" withArrow>
+                <LabelTooltip
+                  label={(<Text> Save my data on <Text className="asterisk-5"> * </Text> </Text>)}
+                  tooltip={(<Text className="text-white font-weight-normal">Lorem ipsum</Text>)}
+                  size="md"
+                  withArrow
+                >
                   <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
                 </LabelTooltip>
               )}
@@ -133,7 +144,7 @@ function App() {
             <TextInput
               id="name"
               classNames={{label:'autour-one'}}
-              label="Name of the collection *"
+              label={(<Text className="autour-one"> Name of the collection <Text className="asterisk-5"> * </Text> </Text>)}
               placeholder="Enter a name"
               radius="md"
               size="md"
@@ -143,7 +154,7 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <TextInput
               id="symbol"
-              label="Symbol of the collection *"
+              label={(<Text> Symbol of the collection <Text className="asterisk-5"> * </Text> </Text>)}
               placeholder="Enter a name"
               radius="md"
               size="md"
@@ -153,7 +164,8 @@ function App() {
           <Grid.Col md={2} sm={3} xs={6}>
             <InputGroup
               id="amount"
-              label="Amount of NFTs in the collection *"
+              classNames={{text: 'background-grey border-grey'}}
+              label={(<Text> Amount of NFTs in the collection <Text className="asterisk-5"> * </Text> </Text>)}
               max={Const.AMOUNT_MAX}
               min={Const.AMOUNT_MIN}
               placeholder="Enter an amount"
@@ -172,7 +184,12 @@ function App() {
               classNames={{label: 'width-100'}}
               disabled
               label={(
-                <LabelTooltip classNames={{label:'autour-one'}} label="Owner *" tooltip="Lorem ipsum" size="md" withArrow>
+                <LabelTooltip
+                  label={(<Text className="autour-one"> Owner <Text className="asterisk-5"> * </Text> </Text>)}
+                  tooltip={(<Text className="text-white font-weight-normal">Lorem ipsum</Text>)}
+                  size="md"
+                  withArrow
+                >
                   <AiOutlineInfoCircle size={Const.ICON_INFO_SIZE} />
                 </LabelTooltip>
               )}
@@ -198,7 +215,7 @@ function App() {
           <Grid.Col md={2} sm={3}>
             <Textarea
               id="description"
-              label="Description *"
+              label={(<Text> Description <Text className="asterisk-6"> * </Text> </Text>)}
               minRows={4}
               placeholder="Enter a description"
               radius="md"
