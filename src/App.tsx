@@ -1,5 +1,6 @@
 import { Anchor, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
 import InputGroup from './components/InputGroup';
+import Const from './Const';
 
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
@@ -75,8 +76,8 @@ function App() {
             <InputGroup
               id="amount"
               label="Amount of NFTs in the collection *"
-              max={10_000}
-              min={1}
+              max={Const.AMOUNT_MAX}
+              min={Const.AMOUNT_MIN}
               placeholder="Enter an amount"
               radius="md"
               size="md"
