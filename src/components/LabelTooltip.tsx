@@ -12,15 +12,6 @@ interface LabelTooltipProps extends
   size?: MantineSize;
 }
 
-interface DefaultLabelTooltipProps {
-  size: MantineSize;
-}
-
-const defaultProps: DefaultLabelTooltipProps = {
-  size: 'md'
-};
-
-
 function LabelTooltip({
   // styles
   classNames,
@@ -42,9 +33,9 @@ function LabelTooltip({
 
   return (
     <div className={cx(classes.root, classNames?.root, className)}>
-      <Text className={cx(classes.label, classNames?.label)} size={size || defaultProps.size}> {label} </Text>
+      <Text className={cx(classes.label, classNames?.label)} size={size}> {label} </Text>
       <Tooltip label={tooltip} className={cx(classes.tooltip, classNames?.tooltip)} {...others}>
-        <Button className={cx(classes.button, classNames?.button)} size={size || defaultProps.size}> 
+        <Button className={cx(classes.button, classNames?.button)} size={size}> 
           {children}
         </Button>
       </Tooltip>

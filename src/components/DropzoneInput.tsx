@@ -25,17 +25,11 @@ interface DropzoneInputProps extends
 }
 
 interface DefaultDropzoneInputProps {
-  gutter: MantineSize;
-  mt: MantineSize;
   iconSize: number;
-  size: MantineSize;
 }
 
 const defaultProps: DefaultDropzoneInputProps = {
-  gutter: 'sm',
-  mt: 'sm',
-  iconSize: 25,
-  size: 'md'
+  iconSize: 25
 };
 
 function DropzoneInput({
@@ -111,7 +105,7 @@ function DropzoneInput({
   }
 
   return (
-    <Grid columns={11} gutter={gutter || defaultProps.gutter} mt={mt || defaultProps.mt} className={cx(classes.root, classNames?.root, className)}>
+    <Grid columns={11} gutter={gutter} mt={mt} className={cx(classes.root, classNames?.root, className)}>
       <Grid.Col span={4}>
         <div className={cx(classes.preview, classNames?.preview)}>
           {source !== '' && (<img src={source} className={cx(classes.image, classNames?.image)} />)}
@@ -145,16 +139,16 @@ function DropzoneInput({
               className={cx(classes.label, classNames?.label)}
               labelElement={labelElement}
               required={required}
-              size={size || defaultProps.size}
+              size={size}
             >
               {label}
             </Input.Label>
           </Grid.Col>
           <Grid.Col span={1}>
             <FileButton onChange={setFile} accept={accept && (new Array(accept)).join(',')}>
-              {(props) => <Button id={id} className={cx(classes.button, classNames?.button)} size={size || defaultProps.size} {...props}> {children} </Button>}
+              {(props) => <Button id={id} className={cx(classes.button, classNames?.button)} size={size} {...props}> {children} </Button>}
             </FileButton>
-            {error && (<Input.Error className={cx(classes.error, classNames?.error)} size={size || defaultProps.size} mt="5px"> {error} </Input.Error>)}
+            {error && (<Input.Error className={cx(classes.error, classNames?.error)} size={size} mt="5px"> {error} </Input.Error>)}
           </Grid.Col>
         </Grid>
       </Grid.Col>
