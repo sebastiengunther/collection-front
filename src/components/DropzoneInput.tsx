@@ -148,7 +148,7 @@ function DropzoneInput({
 
       <Grid.Col span={7} m="auto">
         <Grid columns={1}>
-          <Grid.Col span={1}>
+          <Grid.Col span={1} pb="1px" pl="sm">
             <Input.Label
               htmlFor={id}
               className={cx(classes.label, classNames?.label)}
@@ -159,7 +159,7 @@ function DropzoneInput({
               {label}
             </Input.Label>
           </Grid.Col>
-          <Grid.Col span={1}>
+          <Grid.Col span={1} pt="1px">
             <FileButton onChange={setFile} accept={accept && (new Array(accept)).join(',')}>
               {(props) => <Button id={id} className={cx(classes.button, classNames?.button)} size={size} {...props}> {children} </Button>}
             </FileButton>
