@@ -41,7 +41,7 @@ function InputGroup({
     <div className={cx(classes.root, classNames?.root, className)}>
       {label && (<Input.Label className={cx(classes.label, classNames?.label)} htmlFor={id} labelElement={labelElement} size={size}> {label} </Input.Label>)}
       <div className={cx(classes.group, classNames?.group)}>
-        <Input className={cx(classes.input, classNames?.input)} size={size} invalid={(!!error)} {...others}/>
+        <Input className={cx(classes.input, classNames?.input)} id={id} invalid={(!!error)} size={size} {...others}/>
         <div className={cx(classes.text, classNames?.text)}> {children} </div>
       </div>
       {error && (<Input.Error className={cx(classes.error, classNames?.error)} size={size} mt="5px"> {error} </Input.Error>)}
