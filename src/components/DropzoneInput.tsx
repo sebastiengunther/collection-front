@@ -20,7 +20,7 @@ interface DropzoneInputProps extends
   required?: boolean;
   size?: MantineSize;
   error?: string;
-  onChange: (value: null | undefined | unknown | ChangeEvent<any>) => void;
+  onChange: (value: null | undefined | unknown | ChangeEvent<unknown>) => void;
   onDrop?: (files: Array<FileWithPath>) => void;
   onReject?: (files: Array<FileRejection>) => void;
   onLoadFile?: (file: File) => void;
