@@ -30,10 +30,12 @@ function App() {
 
   const getMetamaskAddress = () => {
     if(window.ethereum) {
-      window.ethereum.request({method: Const.ETH_REQUEST_ACCOUNT})
-        .then(([account]: [string]) => {
-          setAddress(account);
-          form.setFieldValue('owner', account);
+      window.ethereum.request<string[]>({method: Const.ETH_REQUEST_ACCOUNT })
+        .then((accounts) => {
+          if(accounts && accounts[0]) {
+            setAddress(accounts[0]);
+            form.setFieldValue('owner', accounts[0]);
+          }
       }).catch(console.error);
     }
   };
