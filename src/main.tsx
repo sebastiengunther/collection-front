@@ -58,7 +58,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           '#app .mantine-Select-rightSection svg path': {
             display: 'none'  
           },
-          '#app .mantine-Select-dropdown .mantine-Select-item:first-child': {
+          '#app .mantine-Select-dropdown .mantine-Select-item:first-of-type': {
             display: 'none'
           },
           // Buttons
