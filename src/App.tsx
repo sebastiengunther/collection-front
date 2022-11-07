@@ -8,6 +8,17 @@ import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useCallback, useEffect, useState } from 'react';
 import useAppForm from './App.form';
 
+interface Form {
+  file: string;
+  blockchain: string;
+  protocol: string;
+  name: string;
+  symbol: string;
+  amount: string;
+  owner: string;
+  description: string;
+}
+
 const blockchainData = new Array<string>('ETH', 'Polygon');
 const protocolData = new Array<string>('IPFS', 'Arweave');
 
@@ -53,8 +64,8 @@ function App() {
     const storedValue = window.localStorage.getItem('form');
     if(storedValue) {
       try {
-        const parsedValue = JSON.parse(storedValue);
-        Object.entries(parsedValue).filter(([_prop, value]) => value).forEach((args) => {
+        const parsedValue: Form = JSON.parse(storedValue) as Form;
+        Object.entries(parsedValue).filter(([, value]) => value).forEach((args) => {
           form.setFieldValue(...args);
         });
       } catch(e) {
