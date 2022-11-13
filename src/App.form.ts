@@ -1,5 +1,6 @@
 import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useForm } from '@mantine/form';
+import { isAddress } from 'web3-utils';
 import Const from './Const';
 import { dataUriToFile } from './utils/DataUri';
 
@@ -49,6 +50,7 @@ export default () => (useForm({
     owner: (value) => {
       if(value.length === 0) return 'Owner is mandatory, connect to MetaMask';
       if(value.length !== Const.ADDRESS_LENGTH) return `Owner address must contain ${Const.ADDRESS_LENGTH} characters (${value.length}/${Const.ADDRESS_LENGTH})`;
+      if(!isAddress(value)) return 'Owner must be a valid address';
       return null;
     },
     description: (value) => {
