@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 
 export function dataUriToFile(dataUri: string) {
   if(!dataUri.match(/data:.+;base64,.+/)) {
-    throw new Error('Error: Parameter "dataUri" is not a Data URI. Data URI format should be "data:<mime>;base64,<b64>".');
+    throw new Error('Parameter "dataUri" is not a Data URI. Data URI format should be "data:<mime>;base64,<b64>".');
   }
   
   const array = dataUri.split(',');
