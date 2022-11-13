@@ -7,7 +7,7 @@ import { AutourOneFonts } from './fonts/AutourOne';
 import { RobotoFonts } from './fonts/Roboto';
 
 const client = new ApolloClient({
-  uri: import.meta.env.VITE_API_URI,
+  uri: import.meta.env.VITE_API_URI as string,
   cache: new InMemoryCache()
 });
 

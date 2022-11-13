@@ -21,6 +21,10 @@ interface Form {
   description: string;
 }
 
+interface CreateCollectionData {
+  createCollection: Form
+}
+
 const toSelectData = (data: Array<string>) => {
   const res = data.map((value) => ({ value: value, label: value, disabled: false }));
   res.unshift({ value: '', label: '--Select--', disabled: true });
@@ -55,13 +59,14 @@ function App() {
   useEffect(getMetamaskAddress, []);
 
   const sendForm = (values: unknown) => {
-    createCollection({ variables: { collection: values }}).then((value) => {
+    createCollection({ variables: { collection: values }}).then(({ data }) => {
+      const collection = (data as CreateCollectionData).createCollection;
       window.localStorage.removeItem('form');
       form.reset();
       form.setFieldValue('owner', address);
-      alert(`Collection ${value.data.createCollection.name} successfully created`);
-      console.log(`Collection ${value.data.createCollection.name} successfully created, file: ${value.data.createCollection.file}`);
-    }).catch((err) => {
+      alert(`Collection ${collection.name} successfully created`);
+      console.log(`Collection ${collection.name} successfully created, file: ${collection.file}`);
+    }).catch((err: Error) => {
       alert(`Error: unable to save collection : ${err.message}`);
     });
   };
