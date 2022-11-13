@@ -1,7 +1,7 @@
 import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useForm } from '@mantine/form';
 import Const from './Const';
-import { dataUrlToFile } from './utils/dataUrlToFile';
+import { dataUriToFile } from './utils/DataUri';
 
 export default () => (useForm({
   initialValues: {
@@ -16,16 +16,15 @@ export default () => (useForm({
   },
   validate: {
     file: (value) => {
-      let file: File | null = null;
-
-      if(value.length > 0) {
-        file = dataUrlToFile(value);
+      try {
+        const file: File = dataUriToFile(value);
+        if(file.size > Const.FILE_MAX_SIZE) return `Max file size is ${(Const.FILE_MAX_SIZE / Const.B_TO_MB)}MB (${(file.size / Const.B_TO_MB)}/${(Const.FILE_MAX_SIZE / Const.B_TO_MB)})`;
+        if((new Array(IMAGE_MIME_TYPE)).join('|').indexOf(file.type) === -1) return `File type "${file.type}" is not accepted`;
+        return null;
       }
-      
-      if(!(file instanceof File)) return 'File is mandatory';
-      if(file.size > Const.FILE_MAX_SIZE) return `Max file size is ${(Const.FILE_MAX_SIZE / Const.B_TO_MB)}MB (${(file.size / Const.B_TO_MB)}/${(Const.FILE_MAX_SIZE / Const.B_TO_MB)})`;
-      if((new Array(IMAGE_MIME_TYPE)).join('|').indexOf(file.type) === -1) return `File type "${file.type}" is not accepted`;
-      return null;
+      catch {
+        return 'File is mandatory';
+      }
     },
     blockchain: (value) => (value.length > 0 ? null : 'Blockchain is mandatory'),
     protocol: (value) => (value.length > 0 ? null : 'Protocol is mandatory'),
