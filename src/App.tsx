@@ -7,6 +7,8 @@ import DropzoneInput from './components/DropzoneInput';
 import { IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useCallback, useEffect, useState } from 'react';
 import useAppForm from './App.form';
+import { useMutation } from "@apollo/client";
+import { CreateCollection } from './Queries';
 
 interface Form {
   file: string;
@@ -38,6 +40,7 @@ const dotAddress = (address: string) => {
 function App() {
   const form = useAppForm();
   const [address, setAddress] = useState('');
+  const [createCollection, { error }] = useMutation(CreateCollection);
 
   const getMetamaskAddress = () => {
     if(window.ethereum) {
@@ -55,9 +58,15 @@ function App() {
   useEffect(getMetamaskAddress, []);
 
   const sendForm = (values: unknown) => {
-    window.localStorage.removeItem('form');
-    form.reset();
-    // Todo : Send to back
+    createCollection({ variables: { collection: values }}).then((value) => {
+      window.localStorage.removeItem('form');
+      form.reset();
+      form.setFieldValue('owner', address);
+      alert(`Collection ${value.data.createCollection.name} successfully created`);
+      console.log(`Collection ${value.data.createCollection.name} successfully created, file: ${value.data.createCollection.file}`);
+    }).catch((err) => {
+      alert(`Error: unable to save collection : ${err.message}`);
+    });
   };
 
   useEffect(() => {
