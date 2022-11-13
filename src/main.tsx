@@ -1,9 +1,15 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { MantineProvider } from '@mantine/core';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AutourOneFonts } from './fonts/AutourOne';
 import { RobotoFonts } from './fonts/Roboto';
+
+const client = new ApolloClient({
+  uri: import.meta.env.VITE_API_URI,
+  cache: new InMemoryCache()
+});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -152,7 +158,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     >
       <RobotoFonts />
       <AutourOneFonts />
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </MantineProvider>
   </React.StrictMode>
 );
