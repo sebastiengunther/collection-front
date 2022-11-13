@@ -21,9 +21,6 @@ interface Form {
   description: string;
 }
 
-const blockchainData = new Array<string>('ETH', 'Polygon');
-const protocolData = new Array<string>('IPFS', 'Arweave');
-
 const toSelectData = (data: Array<string>) => {
   const res = data.map((value) => ({ value: value, label: value, disabled: false }));
   res.unshift({ value: '', label: '--Select--', disabled: true });
@@ -123,7 +120,7 @@ function App() {
             <Select
               id="blockchain"
               classNames={{label: 'width-100'}}
-              data={toSelectData(blockchainData)}
+              data={toSelectData(Const.BLOCKCHAIN_DATA)}
               defaultValue=""
               label={(
                 <LabelTooltip 
@@ -143,7 +140,7 @@ function App() {
             <Select
               id="protocol"
               classNames={{label: 'width-100'}}
-              data={toSelectData(protocolData)}
+              data={toSelectData(Const.PROTOCOL_DATA)}
               defaultValue=""
               label={(
                 <LabelTooltip
