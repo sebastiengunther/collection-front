@@ -1,4 +1,4 @@
-import { Anchor, Button, Container, Grid, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
+import { Anchor, Button, Container, Grid, Input, Select, Text, Textarea, TextInput, Title } from '@mantine/core';
 import InputGroup from './components/InputGroup';
 import LabelTooltip from './components/LabelTooltip';
 import Const from './Const';
@@ -247,6 +247,7 @@ function App() {
         <Grid columns={1} gutter="xl" mt="lg">
           <Grid.Col span={1}>
             <Button size="md" className="button-tall button-black" type="submit"> Continue </Button>
+            {error?.message && (<Input.Error size="md" mt="5px"> {error.message} </Input.Error>)}
           </Grid.Col>
         </Grid>
       </form>
